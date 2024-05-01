@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 1160px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.logo {
+  float: left;
+}
+
+.topnav {
+  float: right;
+}
+
+.topnav a {
+  display: inline-block;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: #000;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .topnav {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+}

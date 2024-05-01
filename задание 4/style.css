@@ -1,0 +1,22 @@
+#expandable-text, #expandable-image {
+    max-height: 100px; 
+    overflow: hidden;
+    transition: max-height 0.5s ease; 
+}
+
+.expanded {
+    max-height: none; 
+}
+
+#toggle-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

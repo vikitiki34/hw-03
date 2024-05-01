@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Management</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message"></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function (event) {
+            event.preventDefault(); 
+
+            var form = event.target;
+            var elements = form.elements;
+            var formData = {}; 
+
+           
+            for (var i = 0; i < elements.length; i++) {
+                var element = elements[i];
+                if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+                    
+                    if (element.value === "") {
+                        alert("All fields must be filled out");
+                        return;
+                    }
+                    
+                    formData[element.name] = element.value;
+                }
+            }
+
+            
+            var storedData = JSON.parse(localStorage.getItem("formData")) || [];
+           
+            storedData.push(formData);
+            
+            localStorage.setItem("formData", JSON.stringify(storedData));
+
+           
+            console.log(storedData);
+
+            
+            form.reset();
+        });
+    </script>
+</body>
+</html>

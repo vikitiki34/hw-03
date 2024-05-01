@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Management with Modal</title>
+    <style>
+        /* Стилі для модального вікна */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+    <button id="openModal">Open Modal</button>
+
+    <!-- Модальне вікно -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Additional Information</h2>
+
+            <form id="modalForm">
+                <label for="modalName">Name:</label><br>
+                <input type="text" id="modalName" name="modalName"><br>
+                <label for="modalEmail">Email:</label><br>
+                <input type="email" id="modalEmail" name="modalEmail"><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Отримуємо необхідні елементи DOM
+        var modal = document.getElementById("myModal");
+        var openModalBtn = document.getElementById("openModal");
+        var closeModalBtn = document.getElementsByClassName("close")[0];
+        var modalForm = document.getElementById("modalForm");
+
+        // Функція відкриття модального вікна
+        function openModal() {
+            modal.style.display = "block";
+        }
+
+        // Функція закриття модального вікна
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Обробники подій
+        openModalBtn.addEventListener("click", openModal);
+        closeModalBtn.addEventListener("click", closeModal);
+
+        // Закриття модального вікна при натисканні на Esc
+        window.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && modal.style.display === "block") {
+                closeModal();
+            }
+        });
+
+        // Закриття модального вікна при кліку за межами вікна
+        window.addEventListener("click", function (event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Обробник відправки форми в модальному вікні
+        modalForm.addEventListener("submit", function (event) {
+            event.preventDefault(); 
+            
+            closeModal(); // Закриття модального вікна після відправки форми
+        });
+    </script>
+</body>
+</html>
